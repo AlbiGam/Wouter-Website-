@@ -253,7 +253,7 @@ function App() {
                   </div>
                   <div className="stat">
                     <span className="stat-value">10</span>
-                    <span className="stat-label">CHAMP. ROUNDS '25</span>
+                    <span className="stat-label">CHAMP. ROUNDS '26</span>
                   </div>
                 </div>
               </div>
