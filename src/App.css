@@ -97,6 +97,99 @@
   gap: 0.35rem;
 }
 
+.mobile-menu-trigger {
+  display: none;
+  border: 1px solid #c7d8ff;
+  border-radius: 999px;
+  background: #ffffff;
+  padding: 0.52rem 0.9rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  font-weight: 700;
+  color: #3a62ad;
+}
+
+.mobile-sidebar-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 20, 46, 0.46);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 240ms ease;
+  z-index: 30;
+}
+
+.mobile-sidebar-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mobile-sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: min(84vw, 320px);
+  height: 100vh;
+  background: linear-gradient(170deg, #ffffff 0%, #f2f7ff 100%);
+  border-left: 1px solid #d8e3fb;
+  box-shadow: -16px 0 38px rgba(19, 57, 130, 0.2);
+  padding: 1.1rem;
+  transform: translateX(102%);
+  transition: transform 260ms ease;
+  z-index: 31;
+}
+
+.mobile-sidebar.open {
+  transform: translateX(0);
+}
+
+.mobile-sidebar-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid #d8e4ff;
+}
+
+.mobile-sidebar-logo {
+  width: 3.1rem;
+  height: auto;
+}
+
+.mobile-sidebar-close {
+  border: 1px solid #c7d8ff;
+  border-radius: 999px;
+  background: #ffffff;
+  padding: 0.4rem 0.72rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  font-weight: 700;
+  color: #3a62ad;
+}
+
+.mobile-sidebar-links {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.mobile-sidebar-links a {
+  display: block;
+  border: 1px solid #d5e2ff;
+  border-radius: 12px;
+  padding: 0.78rem 0.82rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  font-weight: 700;
+  color: #355ea9;
+  background: #ffffff;
+}
+
 .hero-layout {
   margin-top: 0.65rem;
   min-height: calc(100vh - 7rem);
@@ -527,6 +620,24 @@
   gap: 0.7rem;
 }
 
+.calendar-list-wrap {
+  position: relative;
+}
+
+.calendar-view-more {
+  display: none;
+  margin-top: 0.9rem;
+  border: 1px solid #aec7ff;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #3b72d6;
+  padding: 0.58rem 1rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.64rem;
+  letter-spacing: 0.18em;
+  font-weight: 700;
+}
+
 .calendar-item {
   border: 1px solid #d4e2ff;
   border-radius: 16px;
@@ -734,6 +845,20 @@
   color: #3d5278;
 }
 
+.about-read-more {
+  display: none;
+  margin-top: 0.9rem;
+  border: 1px solid #aec7ff;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #3b72d6;
+  padding: 0.58rem 1rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.64rem;
+  letter-spacing: 0.18em;
+  font-weight: 700;
+}
+
 /* Driver card */
 
 .driver-card {
@@ -879,8 +1004,23 @@
     padding: 0.65rem;
   }
 
+  .top-nav {
+    flex-wrap: nowrap;
+  }
+
   .brand-wrap {
     min-width: auto;
+  }
+
+  .menu-links,
+  .lang-switch {
+    display: none;
+  }
+
+  .mobile-menu-trigger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .menu-links {
@@ -898,5 +1038,64 @@
 
   .eyebrow {
     letter-spacing: 0.25em;
+  }
+
+  .calendar-list-wrap {
+    max-height: 24rem;
+    overflow: hidden;
+  }
+
+  .calendar-list-wrap::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 3.2rem;
+    background: linear-gradient(to bottom, rgba(245, 249, 255, 0), rgba(245, 249, 255, 1));
+  }
+
+  .calendar-list-wrap.expanded {
+    max-height: none;
+  }
+
+  .calendar-list-wrap.expanded::after {
+    display: none;
+  }
+
+  .calendar-view-more {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .about-body {
+    max-height: 14.5rem;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .about-body::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 3.2rem;
+    background: linear-gradient(to bottom, rgba(245, 249, 255, 0), rgba(245, 249, 255, 1));
+  }
+
+  .about-body.expanded {
+    max-height: none;
+  }
+
+  .about-body.expanded::after {
+    display: none;
+  }
+
+  .about-read-more {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 }

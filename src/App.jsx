@@ -3,6 +3,16 @@ import './App.css'
 
 function App() {
   const [openRace, setOpenRace] = useState(null)
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+  const [isAboutExpanded, setIsAboutExpanded] = useState(false)
+  const [isCalendarExpanded, setIsCalendarExpanded] = useState(false)
+
+  const navLinks = [
+    { id: 'about', label: 'ABOUT' },
+    { id: 'partners', label: 'PARTNERS' },
+    { id: 'calendar', label: 'CALENDAR' },
+    { id: 'contact', label: 'CONTACT' },
+  ]
 
   const calendarRaces = [
     {
@@ -84,17 +94,65 @@ function App() {
         </div>
 
         <nav className="menu-links" aria-label="Main navigation">
-          <a className="active" href="#about">ABOUT</a>
-          <a href="#partners">PARTNERS</a>
-          <a href="#calendar">CALENDAR</a>
-          <a href="#contact">CONTACT</a>
+          {navLinks.map((link, index) => (
+            <a
+              key={link.id}
+              className={index === 0 ? 'active' : ''}
+              href={`#${link.id}`}
+            >
+              {link.label}
+            </a>
+          ))}
         </nav>
 
         <button className="lang-switch" type="button" aria-label="Language selector">
           EN
           <span aria-hidden="true">⌄</span>
         </button>
+
+        <button
+          className="mobile-menu-trigger"
+          type="button"
+          aria-label="Open menu"
+          aria-expanded={isSidebarOpen}
+          aria-controls="mobile-sidebar"
+          onClick={() => setIsSidebarOpen(true)}
+        >
+          MENU
+        </button>
       </header>
+
+      <div
+        className={`mobile-sidebar-backdrop ${isSidebarOpen ? 'open' : ''}`}
+        onClick={() => setIsSidebarOpen(false)}
+        aria-hidden={!isSidebarOpen}
+      />
+
+      <aside
+        id="mobile-sidebar"
+        className={`mobile-sidebar ${isSidebarOpen ? 'open' : ''}`}
+        aria-label="Mobile navigation"
+      >
+        <div className="mobile-sidebar-head">
+          <img src="/logo.png" alt="WVR" className="mobile-sidebar-logo" />
+          <button
+            type="button"
+            className="mobile-sidebar-close"
+            aria-label="Close menu"
+            onClick={() => setIsSidebarOpen(false)}
+          >
+            CLOSE
+          </button>
+        </div>
+
+        <nav className="mobile-sidebar-links" aria-label="Mobile main navigation">
+          {navLinks.map((link) => (
+            <a key={link.id} href={`#${link.id}`} onClick={() => setIsSidebarOpen(false)}>
+              {link.label}
+            </a>
+          ))}
+        </nav>
+      </aside>
 
       <main className="hero-layout">
         <section className="hero-image" aria-label="Kart driver image">
@@ -137,7 +195,7 @@ function App() {
               ABOUT<br />ME
             </h2>
 
-            <div className="about-body">
+            <div className={`about-body ${isAboutExpanded ? 'expanded' : ''}`}>
               <p>
                 At the age of 4 I fell in love with racing while watching MotoGP with my dad. Right there I knew I wanted to race, it didn't matter what. I have always been competitive and wanting to win.
               </p>
@@ -151,6 +209,15 @@ function App() {
                 This year I won the first round of the national championship and I'm currently trying to compete in all 10 rounds of the championship.
               </p>
             </div>
+
+            <button
+              type="button"
+              className="about-read-more"
+              onClick={() => setIsAboutExpanded((prev) => !prev)}
+              aria-expanded={isAboutExpanded}
+            >
+              {isAboutExpanded ? 'SHOW LESS' : 'READ MORE'}
+            </button>
           </div>
 
           <div className="about-right">
@@ -291,46 +358,57 @@ function App() {
             </div>
           </div>
 
-          <div className="calendar-list">
-            {calendarRaces.map((race) => {
-              const isOpen = openRace === race.id
-              const hasResults = Boolean(race.results)
+          <div className={`calendar-list-wrap ${isCalendarExpanded ? 'expanded' : ''}`}>
+            <div className="calendar-list">
+              {calendarRaces.map((race) => {
+                const isOpen = openRace === race.id
+                const hasResults = Boolean(race.results)
 
-              return (
-                <article key={race.id} className={`calendar-item ${race.status}`}>
-                  {hasResults ? (
-                    <button
-                      type="button"
-                      className="calendar-toggle"
-                      onClick={() => setOpenRace(isOpen ? null : race.id)}
-                      aria-expanded={isOpen}
-                    >
+                return (
+                  <article key={race.id} className={`calendar-item ${race.status}`}>
+                    {hasResults ? (
+                      <button
+                        type="button"
+                        className="calendar-toggle"
+                        onClick={() => setOpenRace(isOpen ? null : race.id)}
+                        aria-expanded={isOpen}
+                      >
+                        <div className="calendar-item-top">
+                          <p className="calendar-round">{race.round}</p>
+                          <div className="calendar-meta">
+                            <span className={`calendar-status ${race.status}`}>
+                              {race.status.toUpperCase()}
+                            </span>
+                            <span className="calendar-action">
+                              {isOpen ? 'HIDE RESULTS -' : 'VIEW RESULTS +'}
+                            </span>
+                          </div>
+                        </div>
+                      </button>
+                    ) : (
                       <div className="calendar-item-top">
                         <p className="calendar-round">{race.round}</p>
-                        <div className="calendar-meta">
-                          <span className={`calendar-status ${race.status}`}>
-                            {race.status.toUpperCase()}
-                          </span>
-                          <span className="calendar-action">
-                            {isOpen ? 'HIDE RESULTS -' : 'VIEW RESULTS +'}
-                          </span>
-                        </div>
+                        <span className={`calendar-status ${race.status}`}>
+                          {race.status.toUpperCase()}
+                        </span>
                       </div>
-                    </button>
-                  ) : (
-                    <div className="calendar-item-top">
-                      <p className="calendar-round">{race.round}</p>
-                      <span className={`calendar-status ${race.status}`}>
-                        {race.status.toUpperCase()}
-                      </span>
-                    </div>
-                  )}
+                    )}
 
-                  {hasResults && isOpen && <p className="calendar-results">{race.results}</p>}
-                </article>
-              )
-            })}
+                    {hasResults && isOpen && <p className="calendar-results">{race.results}</p>}
+                  </article>
+                )
+              })}
+            </div>
           </div>
+
+          <button
+            type="button"
+            className="calendar-view-more"
+            onClick={() => setIsCalendarExpanded((prev) => !prev)}
+            aria-expanded={isCalendarExpanded}
+          >
+            {isCalendarExpanded ? 'SHOW LESS' : 'VIEW MORE'}
+          </button>
         </div>
       </section>
 
