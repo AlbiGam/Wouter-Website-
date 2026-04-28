@@ -88,7 +88,7 @@ function App() {
             <a href="https://www.instagram.com/woutervanriel_racing?igsh=OGp3cmtreWsxYXR1&utm_source=qr" target="_blank" rel="noreferrer" aria-label="Instagram">
               IG
             </a>
-            <a href="#" aria-label="TikTok">
+            <a href="https://www.tiktok.com/@woutervanriel_racing?_r=1&_t=ZG-95rbFqM1Rq5" target="_blank" rel="noreferrer" aria-label="TikTok">
               TT
             </a>
           </div>
