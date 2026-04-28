@@ -52,14 +52,24 @@
 .social-mini a {
   border: 1px solid #c8d9ff;
   color: #4c74c2;
+  background: #ffffff;
   border-radius: 999px;
   width: 1.55rem;
   height: 1.55rem;
   display: grid;
   place-items: center;
-  font-size: 0.58rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
+  transition: transform 160ms ease, background-color 160ms ease;
+}
+
+.social-mini a:hover {
+  background: #e7f0ff;
+  transform: translateY(-1px);
+}
+
+.social-mini svg {
+  width: 0.84rem;
+  height: 0.84rem;
+  display: block;
 }
 
 .menu-links {

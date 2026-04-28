@@ -86,10 +86,16 @@ function App() {
           <img src={assetUrl('logo.png')} alt="Wouter van Riel" className="nav-logo" />
           <div className="social-mini" aria-label="Social links">
             <a href="https://www.instagram.com/woutervanriel_racing?igsh=OGp3cmtreWsxYXR1&utm_source=qr" target="_blank" rel="noreferrer" aria-label="Instagram">
-              IG
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <rect x="2.2" y="2.2" width="19.6" height="19.6" rx="6" ry="6" fill="none" stroke="currentColor" strokeWidth="1.8" />
+                <circle cx="12" cy="12" r="4.35" fill="none" stroke="currentColor" strokeWidth="1.8" />
+                <circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" />
+              </svg>
             </a>
             <a href="https://www.tiktok.com/@woutervanriel_racing?_r=1&_t=ZG-95rbFqM1Rq5" target="_blank" rel="noreferrer" aria-label="TikTok">
-              TT
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path fill="currentColor" d="M14 4.5c.95 1.27 2.14 2.02 3.7 2.2v2.7c-1.4-.05-2.6-.45-3.7-1.18v5.24c0 3.17-2.3 5.24-5.14 5.24-2.92 0-5.14-2.22-5.14-5.03 0-3.07 2.37-5.19 5.51-5.19.35 0 .7.04 1.04.13v2.84a2.66 2.66 0 0 0-1.04-.21c-1.43 0-2.56.97-2.56 2.43 0 1.35 1.05 2.4 2.45 2.4 1.5 0 2.43-1.09 2.43-2.66V4.5H14Z" />
+              </svg>
             </a>
           </div>
         </div>
