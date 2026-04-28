@@ -6,6 +6,7 @@ function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const [isAboutExpanded, setIsAboutExpanded] = useState(false)
   const [isCalendarExpanded, setIsCalendarExpanded] = useState(false)
+  const assetUrl = (fileName) => `${import.meta.env.BASE_URL}${fileName}`
 
   const navLinks = [
     { id: 'about', label: 'ABOUT' },
@@ -82,7 +83,7 @@ function App() {
       <header className="top-nav">
         <div className="brand-wrap">
           <span className="status-dot" aria-hidden="true" />
-          <img src="/logo.png" alt="Wouter van Riel" className="nav-logo" />
+          <img src={assetUrl('logo.png')} alt="Wouter van Riel" className="nav-logo" />
           <div className="social-mini" aria-label="Social links">
             <a href="https://www.instagram.com/woutervanriel_racing?igsh=OGp3cmtreWsxYXR1&utm_source=qr" target="_blank" rel="noreferrer" aria-label="Instagram">
               IG
@@ -134,7 +135,7 @@ function App() {
         aria-label="Mobile navigation"
       >
         <div className="mobile-sidebar-head">
-          <img src="/logo.png" alt="WVR" className="mobile-sidebar-logo" />
+          <img src={assetUrl('logo.png')} alt="WVR" className="mobile-sidebar-logo" />
           <button
             type="button"
             className="mobile-sidebar-close"
@@ -157,14 +158,14 @@ function App() {
       <main className="hero-layout">
         <section className="hero-image" aria-label="Kart driver image">
           <img
-            src="/main_page.jpeg"
+            src={assetUrl('main_page.jpeg')}
             alt="Wouter van Riel"
           />
           <div className="image-fade" aria-hidden="true" />
         </section>
 
         <section className="hero-copy">
-          <img src="/logo.png" alt="WVR" className="hero-logo" />
+          <img src={assetUrl('logo.png')} alt="WVR" className="hero-logo" />
           <h1>
             WOUTER
             <span>VAN RIEL</span>
@@ -223,7 +224,7 @@ function App() {
           <div className="about-right">
             <div className="driver-card">
               <div className="card-photo">
-                <img src="/about_me.jpeg" alt="Wouter van Riel on track" />
+                <img src={assetUrl('about_me.jpeg')} alt="Wouter van Riel on track" />
               </div>
               <div className="card-info">
                 <p className="card-name">
@@ -278,7 +279,7 @@ function App() {
           </div>
 
           <figure className="product-media">
-            <img src="/prodcut_dev.jpeg" alt="Product development testing session" />
+            <img src={assetUrl('prodcut_dev.jpeg')} alt="Product development testing session" />
             <figcaption>Elite R klasse testing</figcaption>
           </figure>
         </div>
@@ -300,7 +301,7 @@ function App() {
           <div className="partners-grid">
             <article className="partner-card">
               <div className="partner-logo-wrap">
-                <img src="/aimotor.png" alt="AiMotor logo" className="partner-logo" />
+                <img src={assetUrl('aimotor.png')} alt="AiMotor logo" className="partner-logo" />
               </div>
               <div className="partner-copy">
                 <p className="partner-role">TECHNICAL PARTNER</p>
@@ -321,7 +322,7 @@ function App() {
 
             <article className="partner-card">
               <div className="partner-logo-wrap">
-                <img src="/ikadem.png" alt="Ikadem logo" className="partner-logo" />
+                <img src={assetUrl('ikadem.png')} alt="Ikadem logo" className="partner-logo" />
               </div>
               <div className="partner-copy">
                 <p className="partner-role">MAIN SPONSOR</p>
@@ -354,7 +355,7 @@ function App() {
               <h2 className="calendar-heading">2026 RACE SCHEDULE</h2>
             </div>
             <div className="calendar-head-image">
-              <img src="/calendar.PNG" alt="Wouter van Riel racing in kart" />
+              <img src={assetUrl('calendar.PNG')} alt="Wouter van Riel racing in kart" />
             </div>
           </div>
 
@@ -415,7 +416,7 @@ function App() {
       <section className="contact-section" id="contact">
         <div className="contact-inner">
           <div className="contact-photo">
-            <img src="/contact.jpeg" alt="Wouter van Riel contact" />
+            <img src={assetUrl('contact.jpeg')} alt="Wouter van Riel contact" />
           </div>
 
           <div className="contact-card">
